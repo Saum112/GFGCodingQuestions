@@ -1,0 +1,29 @@
+int maxLen(int arr[], int n)
+    {
+        // Your code here
+        
+        HashMap<Integer,Integer> map = new HashMap<>();
+        
+        int i = -1,maxlen = 0,sum=0;
+        map.put(0,-1);
+        
+        while(i<n-1){
+            
+            i++;
+            sum += arr[i];
+            
+            if(!map.containsKey(sum)){
+                map.put(sum,i);
+            }
+            
+            else{
+                
+                int len = i-map.get(sum);
+                
+                if(len>maxlen)
+                maxlen = len;
+            }
+        }
+        
+        return maxlen;
+    }
