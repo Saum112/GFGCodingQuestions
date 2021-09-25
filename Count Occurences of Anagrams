@@ -1,0 +1,49 @@
+class Solution {
+    
+    
+    int comp(char t[],char p[]){
+       for(int i=0;i<256;i++){
+           if(t[i]!=p[i]){
+               return 0;
+           }
+       }
+       return 1;
+   }
+
+    int search(String pat, String txt) {
+        // code here
+        
+        char spat[] = new char[256] ; char text[] = new char[256];
+        int m = pat.length();
+        
+        int i;
+        for(i=0; i<m; i++){
+            
+           
+            spat[256-pat.charAt(i)]++;
+            text[256-txt.charAt(i)]++;
+        }
+        
+      
+    
+        int n = txt.length() , c = 0;
+        
+        for(i = m ; i<n; i++){
+            
+            if(comp(text , spat)==1){
+                c++;
+            }
+            
+            text[256-txt.charAt(i)]++;
+            text[256-txt.charAt(i-m)]--;
+        
+        }
+        
+        
+        if(comp(text, spat)==1)
+        c++;
+       
+        
+        return c;
+    }
+}
