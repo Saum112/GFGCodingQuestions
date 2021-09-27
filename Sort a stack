@@ -1,0 +1,37 @@
+class GfG{
+    
+public Stack<Integer> sorted(int value,Stack<Integer> s1){
+    
+if(s1.isEmpty() || value>s1.peek()){
+    
+    s1.push(value);
+}
+
+else{
+    
+    int x = s1.pop();
+    sorted(value, s1);
+    s1.push(x);
+}
+    
+    return s1;
+    
+}
+
+
+public Stack<Integer> sort(Stack<Integer> s)
+{
+
+//add code here.
+Stack<Integer> st =new Stack();
+
+while(!s.isEmpty()) 
+{
+    int value=s.pop();
+    
+    sorted(value,st);
+}
+return st;
+}
+
+}
