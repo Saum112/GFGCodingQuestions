@@ -1,0 +1,36 @@
+
+
+class Solution{
+    static int candies(int m, int n)
+    {
+        // Your code goes here 
+        
+        Queue<Integer> q = new LinkedList<>();
+        q.add(m*n-m-n);
+        
+        Set<Integer> se = new HashSet<>();
+        se.add(m*n-m-n);
+        
+        while(!q.isEmpty()){
+            
+            int num = q.poll();
+            
+            if(num-n>0 && !se.contains(num-n)){
+                se.add(num-n);
+                q.add(num-n);
+            }
+            
+            
+            if(num-m>0 && !se.contains(num-m)){
+                se.add(num-m);
+                q.add(num-m);
+            }
+        }
+        
+        
+        return se.size();
+        
+        
+        
+    }
+}
