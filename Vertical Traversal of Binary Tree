@@ -1,0 +1,64 @@
+class Obj {
+    int hd;
+    Node node;
+    Obj(int hd, Node node)
+    {
+        this.hd = hd;
+        this.node = node;
+    }
+}
+
+class Solution
+{
+
+    static void getVerticalOrder(Node root, int hd, TreeMap<Integer,ArrayList<Integer>> m){
+                                    
+     if(root == null)
+            return;
+            
+     Queue<Obj> que = new LinkedList<Obj>();
+     que.add(new Obj(0, root));
+     
+    while (!que.isEmpty()) {
+            Obj temp = que.poll();
+            hd = temp.hd;
+            Node node = temp.node;
+ 
+            
+            if (m.containsKey(hd)) {
+                m.get(hd).add(node.data);
+            }
+            else {
+                ArrayList<Integer> al = new ArrayList<>();
+                al.add(node.data);
+                m.put(hd, al);
+            }
+            if (node.left != null)
+                que.add(new Obj(hd - 1, node.left));
+            if (node.right != null)
+                que.add(new Obj(hd + 1, node.right));
+        }
+    
+                                    
+    }
+    static ArrayList <Integer> verticalOrder(Node root)
+    {
+        // add your code here
+        
+         TreeMap<Integer,ArrayList<Integer>> m = new TreeMap<>();
+         
+         int hd =0;
+         getVerticalOrder(root,hd,m);
+         
+       ArrayList<Integer> list = new ArrayList<>();
+       for(Map.Entry<Integer, ArrayList<Integer>> e: m.entrySet()) {
+           list.addAll(e.getValue());
+       }
+       
+        return list;
+    }
+         
+        
+       
+    
+}
