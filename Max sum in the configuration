@@ -1,0 +1,36 @@
+//Amazon SDE series GFG
+
+
+class GfG
+{
+    int max_sum(int A[], int n)
+    {
+	// Your code here
+	int s0 = 0 , su = 0;
+	
+	for(int i=0; i<n; i++){
+	 
+	 s0 += A[i]*i;
+	 su += A[i];
+	    
+	}
+	
+	int se  = s0 , ma = s0 ;
+	
+	
+	for(int i = 0 ; i<n-1 ; i++){
+	
+	int sip1  = se + su - n*A[n-i-1];
+	
+	//System.out.println(sip1);
+	
+	ma = Math.max(sip1, ma);
+	
+	se = sip1;
+	
+	}
+	
+	return ma;
+	
+    }	
+}
