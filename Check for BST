@@ -1,0 +1,32 @@
+public class Solution
+{
+    //Function to check whether a Binary Tree is BST or not.
+    boolean isBST(Node root)
+    {
+        // code here.
+        
+        if(root==null)
+        return true;
+       
+       
+       return check(root,null,null);
+        
+    }
+    
+    
+    boolean check(Node root , Node min , Node max){
+        
+        if(root==null)
+        return true;
+        
+        
+            
+    else if(min!=null && root.data <= min.data ||  max!=null && root.data >=max.data)
+        return false;
+        
+        
+        
+        
+        return check(root.left, min, root) && check(root.right, root, max);
+    }
+}
