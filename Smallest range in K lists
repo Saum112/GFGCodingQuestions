@@ -1,0 +1,71 @@
+class Result implements Comparable<Result>{
+	        
+	   int val ; int  idx ; int row;
+	   Result(int val , int idx , int row){
+	            
+	            this.val= val;
+                this.idx= idx;
+                this.row= row;
+	    }
+	        
+	   public int compareTo(Result re)  {
+	            return this.val-re.val;
+	   }
+	    
+	}
+
+
+class Solution
+{
+	
+	    //add your code here
+	
+	static int[] findSmallestRange(int[][] arr,int n,int k)
+	{
+	    
+	    int range = Integer.MAX_VALUE  , low= Integer.MAX_VALUE, high= Integer.MIN_VALUE, 
+	    max= Integer.MIN_VALUE;
+	    
+	    PriorityQueue<Result> pq = new PriorityQueue<>();
+	    
+	    for(int i=0; i<k; i++){
+	        
+	        max = Math.max(max , arr[i][0] );
+	        pq.add(new Result(arr[i][0] , 0 , i));
+	    }
+	    
+	    range = max-pq.peek().val;
+	    low = pq.peek().val;
+	    high = max;
+	    
+	    while(true){
+	        
+	        Result res = pq.poll();
+	        int row = res.row;
+	        int ix = res.idx;
+	        
+	        
+	        if(!(ix+1<n)){
+	            break;
+	        }
+	        
+	        
+	        
+	        Result se = new Result(arr[row][ix+1] , ix+1 , row);
+	        pq.add(se);
+	        max = Math.max(max , arr[row][ix+1]);
+	        
+	        if(range > max-pq.peek().val ){
+	            
+	            range = max-pq.peek().val;
+	            high = max ; 
+	            low = pq.peek().val;
+	        }
+	        
+	    }
+	    
+	    
+	    return new int[] {low , high};
+	    
+	}
+}
