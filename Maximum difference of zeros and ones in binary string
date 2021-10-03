@@ -1,0 +1,73 @@
+//First Approach with TC - O(n) and Space Complexity - O(n)
+
+class Solution {
+    int maxSubstring(String S) {
+        // code here
+        
+        int n = S.length();
+        int dp[] = new int[n];
+        
+        for(int i = 0 ; i<n; i++){
+            
+            if(S.charAt(i)=='0')
+            dp[i] = 1;
+            
+            else
+            dp[i] = -1;
+            
+            
+            
+        }
+        
+     
+        int sum = 0, max = Integer.MIN_VALUE;
+        
+        for(int i = 0 ; i<n; i++ ){
+            
+            sum += dp[i];
+            
+            max = Math.max(max , sum);
+            
+            if(sum<0)
+            sum = 0;
+        }
+        
+        return max;
+    }
+}
+
+
+
+
+//Second Approach with TC - O(n) and Space Complexity - O(1)
+
+
+class Solution {
+    int maxSubstring(String S) {
+        // code here
+        
+        int c = 0 , max = Integer.MIN_VALUE ; 
+        
+        int n = S.length();
+        
+        for(int i = 0 ; i<n; i++){
+            
+            if(S.charAt(i)=='0')
+            c++;
+            
+            else 
+            c--;
+            
+            max = Math.max(c, max);
+            
+            
+            if(c<0)
+            c = 0;
+            
+            
+        }
+        
+     return max;
+       
+    }
+}
