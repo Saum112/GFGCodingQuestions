@@ -1,0 +1,59 @@
+class Solution 
+{ 
+    
+    int dia;
+    
+    int dfs(int w , int outgoing[], int diameter[])
+{
+	if (outgoing[w] == 0) 
+		return w;
+	if (diameter[w] < dia)
+		dia = diameter[w];
+	return dfs(outgoing[w] , outgoing , diameter);
+}
+
+    ArrayList<ArrayList<Integer>> solve(int n, int p, ArrayList<Integer> a ,ArrayList<Integer> b ,ArrayList<Integer> d) 
+    { 
+         // code here
+         
+         
+        
+         int incoming[] = new int [n+1];
+         int outgoing[] = new int [n+1];
+         int diameter[] = new int [n+1];
+         
+         for(int i = 0; i<p; i++){
+             
+             
+             
+             outgoing[a.get(i)] = b.get(i);
+             diameter[a.get(i)] = d.get(i);
+             incoming[b.get(i)] = a.get(i);
+             
+         }
+         
+         
+         ArrayList<ArrayList<Integer>> res = new  ArrayList<ArrayList<Integer>>();
+        
+         
+         for(int i=1; i<=n; i++){
+             
+              dia = Integer. MAX_VALUE;
+             
+             ArrayList<Integer> ar = new ArrayList<>();
+             if(incoming[i] == 0 && outgoing[i]!=0)
+             {
+                 int j = dfs(i,outgoing , diameter );
+                 //System.out.println(i+ "   "+ j + "   "+dia);
+                 ar.add(i);
+                 ar.add(j);
+                 ar.add(dia);
+                 res.add(ar);
+                 
+             }
+         }
+         
+         return res;
+         
+     }
+} 
