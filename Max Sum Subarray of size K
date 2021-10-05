@@ -1,0 +1,47 @@
+Refer this article for proper understanding : https://www.gyanblog.com/coding-interview/sliding-window/
+
+// Brute force approach TC - O(nK)
+
+public int findMaxSum(int[] arr, int k) {
+  int max=0;
+  for (int i=0; i<=arr.length-k; i++) {
+    int sum_k = 0;
+    for (int j=i; j<i+k; j++) {
+      sum_k += arr[j];
+    }
+    max = Math.max(max, sum_k);
+  }
+  return max;
+}
+
+
+//Optimised approach using Sliding Window
+
+class Solution{
+    static int maximumSumSubarray(int k, ArrayList<Integer> arr,int N){
+        // code here
+        
+      
+      
+      int i = 0 , j=0 ,s = 0 , max = 0;
+      
+      while(j<N){
+          
+          s+= arr.get(j);
+          
+          if(j-i+1 == k){
+              
+              max = Math.max(s , max);
+              s = s-arr.get(i);
+              i++;
+          }
+          
+          
+          
+          j++;
+      }
+      
+      return max;
+    }
+}
+
