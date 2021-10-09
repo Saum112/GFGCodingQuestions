@@ -1,0 +1,77 @@
+class Solution
+{
+   
+	public int findK(int arr[][], int n, int m, int k)
+	{
+	    
+	    int t = 0 , b = n-1, r = m-1, l = 0,c=0,dir=0;
+	    
+	    while(t<=b && l<=r){
+	        
+	        if(dir==0){
+	            
+	            
+	            
+	            for(int i = l ; i<=r; i++){
+	                
+	                if(c==k-1)
+	                return arr[t][i]; 
+	                
+	                
+	                c++;
+	            }
+	            
+	            t++;
+	            
+	        }
+	        
+	       else if(dir==1){
+	            
+	            for(int i = t; i<=b ; i++){
+	                
+	                if(c==k-1)
+	                return arr[i][r]; 
+	         
+
+	                c++;
+	            }
+	            
+	            r--;
+	        }
+	        
+	        else if(dir==2){
+	           
+	            for(int i = r; i>=l ; i--){
+	                
+	                if(c==k-1)
+	                return arr[b][i]; 
+	         
+
+	                c++;
+	            }
+	                
+	            b--;
+	        }
+	        
+	        else if(dir==3){
+	            
+	            for(int i=b;i>=t;i--){
+	                
+	                if(c==k-1)
+	                return arr[i][l]; 
+	   
+
+	                c++;
+	            }
+	            
+	            l++;
+	        }
+	        
+	        
+	        dir = (dir+1)%4;
+	    }
+	    
+	    return 0;
+	}
+	
+}
