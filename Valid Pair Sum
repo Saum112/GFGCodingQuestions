@@ -1,0 +1,26 @@
+class Solution 
+{ 
+    static long ValidPair(int a[], int n) 
+	{ 
+	   
+	    
+	    Arrays.sort(a);
+	    
+	    int i = 0, j = n-1; long sum=0;
+	    
+	    while(i<j){
+	        
+	        if(a[i]+a[j]>0){
+	            
+	            sum+=(j-i);
+	            j--;
+	        }
+	        
+	        else{
+	            i++;
+	        }
+	    }
+	    
+	    return sum;
+	}
+} 
