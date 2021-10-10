@@ -1,0 +1,49 @@
+ public long[] printFirstNegativeInteger(long A[], int N, int K)
+    {
+        
+        int i = 0 , j=0;
+        ArrayList<Long>ans = new ArrayList<>();
+        Queue<Long> q = new LinkedList<>();
+      
+      
+        while(j<N){
+            
+            if(A[j]<0)
+            q.add(A[j]);
+            
+
+            if(j-i+1 == K){
+                
+
+                if(q.size()==0){
+                   
+                long b = 0;    
+                ans.add(b);
+                
+                }
+                else{
+                    
+                ans.add(q.peek());
+                
+                
+                if(A[i] == q.peek())
+                q.poll();
+                
+                
+                }
+            i++;
+
+            }
+            
+            
+            j++;
+            
+        }
+        
+        
+        long[] arr = ans.stream().mapToLong(x -> x).toArray();
+        
+        
+        return arr;
+        
+    }
