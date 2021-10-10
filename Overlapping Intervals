@@ -1,0 +1,47 @@
+class Solution
+{
+    public int[][] overlappedInterval(int[][] arr)
+    {
+        
+        if(arr.length<=1)
+        return arr;
+        
+        Arrays.sort(arr, (i1, i2) -> Integer.compare(i1[0], i2[0]));
+        
+        ArrayList<Integer> ar = new ArrayList<Integer>();
+        
+        int start = arr[0][0];
+        int end = arr[0][1];
+        
+        for(int i = 1; i<arr.length; i++){
+            
+            if(arr[i][0]<=end)
+            end = Math.max(end, arr[i][1]);
+            
+            else{
+            ar.add(start);
+            ar.add(end);
+            
+            start = arr[i][0];
+            end = arr[i][1];
+            
+            
+            }
+        }
+        
+        ar.add(start);
+        ar.add(end);
+        
+       int res[][] = new int[ar.size()/2][2];
+       int x = 0;
+       for(int i=0;i<ar.size();i+=2)
+       {
+           res[x][0]=ar.get(i);
+           res[x][1]=ar.get(i+1);
+           x++;
+       }
+       
+      return res;
+
+    }
+}
