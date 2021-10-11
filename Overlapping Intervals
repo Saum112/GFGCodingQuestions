@@ -1,3 +1,13 @@
+
+/*The logic is to sort the intervals by their starting points.  We will take the first interval and compare its end with the next interval's start.
+If they overlap, we will update the end to be the max end of the overlapping intervals. 
+On find a non overlapping interval, we can add the previous extended interval and proceed.
+
+ O(n log(n)) for sorting and merging the intervals takes O(n). 
+
+Hence TC = O(n log(n))*/
+
+
 class Solution
 {
     public int[][] overlappedInterval(int[][] arr)
