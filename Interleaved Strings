@@ -1,0 +1,48 @@
+// Recursion + Memoization 
+
+class Solution {    
+    
+    public boolean helperInterLeave(String a,String b,String c ,int i, int j, Boolean[][] dp)
+    
+    {
+        if(i==a.length() && j==b.length())
+        return true;
+        
+        if(dp[i][j] != null)
+        return dp[i][j];
+        
+        if(i<a.length() && a.charAt(i) == c.charAt(i+j)){
+            boolean s1 = helperInterLeave(a,b,c,i+1, j ,dp);
+            dp[i][j] = s1;
+            
+            if(s1)
+            return true;
+        }
+        
+        
+        if(j<b.length() && b.charAt(j)==c.charAt(i+j)){
+            
+            boolean s2 = helperInterLeave(a,b,c,i, j+1 ,dp);
+            dp[i][j] = s2;
+            
+            if(s2)
+            return true;
+        }
+        
+        return false;
+        
+    }
+  
+  
+	public boolean isInterLeave(String a,String b,String c)
+	{
+            
+            Boolean[][] dp = new Boolean[a.length()+1][b.length()+1];
+            
+            if(a.length()+b.length() != c.length())
+            return false;
+            
+            return helperInterLeave(a,b,c,0,0,dp);
+	}
+}
+
