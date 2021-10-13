@@ -1,0 +1,12 @@
+public static int swapBits(int n) 
+    {
+	    int ev =n&(0xAAAAAAAA);
+	    int od = n&(0x55555555);
+	    
+	    od = od<<1;
+	    ev = ev>>1;
+	    
+	    return od|ev;
+	    
+	    
+	}
