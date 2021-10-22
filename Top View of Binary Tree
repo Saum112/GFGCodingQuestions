@@ -1,0 +1,53 @@
+ class Pair 
+ {
+    Node node;
+    int hd;
+ 
+    Pair(Node node, int hd)
+            {
+                this.node = node;
+                this.hd = hd;
+            }
+    }
+
+class Solution
+{
+    //Function to return a list of nodes visible from the top view 
+    //from left to right in Binary Tree.
+    static ArrayList<Integer> topView(Node root)
+    {
+    
+        ArrayList<Integer> res = new ArrayList<>(); 
+        if(root == null) return res;
+        Map<Integer, Integer> m = new TreeMap<>();
+        Queue<Pair> q = new LinkedList<Pair>();
+        q.add(new Pair(root , 0));
+        
+        while(!q.isEmpty()){
+            
+            Pair p = q.remove();
+            
+            int dist = p.hd;
+            
+            Node temp = p.node;
+            
+            if(m.get(dist)==null)
+            m.put(dist, temp.data);
+            
+            if(temp.left != null)
+             q.add(new Pair(temp.left, dist-1)); 
+             
+            
+             if(temp.right != null)
+             q.add(new Pair(temp.right, dist+1)); 
+             
+            
+        }
+        
+        for (Map.Entry<Integer,Integer> entry : m.entrySet()) {
+            res.add(entry.getValue()); 
+        }
+       return res; 
+        
+    }
+}
