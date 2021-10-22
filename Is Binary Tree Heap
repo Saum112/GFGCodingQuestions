@@ -1,0 +1,52 @@
+class Solution {
+    boolean isHeap(Node root) {
+        // code here
+        Queue<Node> q = new LinkedList<>();
+        
+         // base case
+        if(root == null)
+        return true;
+        
+        q.add(root);
+        
+        //taking a boolean value, which becomes true when an empty left or right
+        //child is seen for a node
+        
+        boolean seen = false;
+        
+        while(!q.isEmpty())
+        {
+            
+            Node temp = q.poll();
+            
+            if(temp.left != null){
+                
+                if(seen || temp.left.data>=temp.data)
+                return false;
+                
+                q.add(temp.left);
+                
+            }
+            else{
+                
+                seen = true;
+            }
+            
+            
+             if(temp.right != null){
+                
+                if(seen || temp.right.data>=temp.data)
+                return false;
+                
+                q.add(temp.right);
+                
+            }
+            else{
+                
+                seen = true;
+            }
+        }
+        
+        return true;
+    }
+}
