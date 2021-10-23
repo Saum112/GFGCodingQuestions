@@ -21,7 +21,7 @@ class Solution {
             
             if(temp.left != null){
                 
-                if(seen || temp.left.data>=temp.data)
+                if(seen || temp.left.data>temp.data)
                 return false;
                 
                 q.add(temp.left);
@@ -35,7 +35,7 @@ class Solution {
             
              if(temp.right != null){
                 
-                if(seen || temp.right.data>=temp.data)
+                if(seen || temp.right.data>temp.data)
                 return false;
                 
                 q.add(temp.right);
