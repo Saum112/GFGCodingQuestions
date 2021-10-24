@@ -1,0 +1,60 @@
+class Pair implements Comparable<Pair>{
+    
+    int v ,av , w;
+    
+    Pair(int v , int av , int w){
+        
+        this.v = v;
+        this.av = av;
+        this.w = w;
+    }
+    
+    public int compareTo(Pair p){
+        return this.w - p.w;
+    }
+}
+
+class Solution
+{
+    //Function to find sum of weights of edges of the Minimum Spanning Tree.
+    static int spanningTree(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj) 
+    {
+        // Add your code here
+        
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+        
+        pq.add(new Pair(0,-1,0));
+        
+        boolean visited[] = new boolean[V];
+        
+        int sum = 0;
+        
+        while(pq.size()>0){
+            
+            Pair temp = pq.remove();
+            
+            if(visited[temp.v] == true){
+                continue;
+            }
+            
+            visited[temp.v] = true;
+            
+            if(temp.av !=-1){
+                
+            sum += temp.w;
+           
+            }
+            for(ArrayList<Integer> arr : adj.get(temp.v)){
+                 
+                if(!visited[arr.get(0)])
+                {
+                    
+                pq.add(new Pair (arr.get(0) , temp.v , arr.get(1) ));
+                
+                }
+            }
+        }
+        
+        return sum;
+    }
+}
