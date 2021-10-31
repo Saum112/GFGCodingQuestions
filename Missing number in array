@@ -1,0 +1,18 @@
+int MissingNumber(int arr[], int n) {
+        
+        int xor = 0;
+        
+        for(int  i : arr ){
+            xor = xor^i;
+        }
+        
+       
+        
+        for(int i = 1; i<=n; i++){
+            
+            xor = xor^i;
+        }
+               
+        
+        return xor;
+    }
