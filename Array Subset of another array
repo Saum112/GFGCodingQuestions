@@ -1,0 +1,22 @@
+public String isSubset( long a1[], long a2[], long n, long m) {
+        
+        Set<Long> s = new HashSet<>();
+        
+        for(int i = 0; i<m; i++){
+            
+            s.add(a2[i]);
+        }
+        int c = 0;
+        for(int i = 0; i<n ; i++){
+            
+            if(s.contains(a1[i])){
+                c++;
+            }
+        }
+        
+        if(c==s.size())
+        return "Yes";
+        
+        else
+        return "No";
+    }
