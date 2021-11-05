@@ -1,0 +1,29 @@
+public static long divide(long a, long b)
+    {
+        int sign = 1;
+        long ans = 0;
+        
+        if((a<0 && b>=0) || (b<0 && a>=0) )
+            sign = -1;
+            
+        long divident = Math.abs(a);
+        long divisor = Math.abs(b);
+        
+        while(divident >= divisor ){
+            
+            long temp = divisor;
+            long quo = 1;
+            
+            while(temp <= divident){
+                temp<<=1;
+                quo<<=1;
+              
+            ans += quo>>1;
+            divident -= temp>>1;
+            
+                
+            }
+        }
+        
+        return sign*ans;
+    }
