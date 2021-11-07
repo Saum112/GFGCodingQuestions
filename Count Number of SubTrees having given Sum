@@ -1,0 +1,31 @@
+class Tree
+{
+    //Function to count number of subtrees having sum equal to given sum.
+    
+    int c = 0;
+
+    
+    int countSubtreesWithSumX(Node root, int X)
+    {
+	        
+	        helper(root , X );
+	        
+	        return c;
+    }
+    
+    int helper(Node root , int x){
+        
+        if(root == null)
+        return 0;
+        
+        int sum = 0;
+        
+        sum = root.data + helper(root.left, x ) 
+                        + helper(root.right, x);
+        
+        if(sum == x)
+            c++;
+            
+        return sum;
+    }
+}
