@@ -1,0 +1,44 @@
+class Solution { 
+    
+    static int sumOfDigits(int n){
+        
+        int sum = 0;
+        
+        while(n!=0){
+            
+            sum += n%10;
+            n = n/10;
+        }
+        
+        return sum;
+    }
+	static int RulingPair(int arr[], int num) { 
+    
+        HashMap<Integer , Integer> map = new HashMap<>();
+        
+        int maxSum = -1;
+        
+        for(int n : arr){
+            
+            int sumD = sumOfDigits(n);
+            
+            if(map.containsKey(sumD)){
+                
+                int val = map.get(sumD);
+                
+                maxSum = Math.max(maxSum , val+n);
+                
+                if(n>val)
+                    map.put(sumD , n);
+            }
+            
+            else{
+                
+                map.put(sumD , n);
+            }
+            
+        }
+        
+        return maxSum;
+	}    
+} 
