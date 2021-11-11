@@ -1,0 +1,28 @@
+  long countSubarray(int N,int A[],long L,long R) {
+        
+        
+        return helper(A , R) - helper(A , L-1);
+    }
+    
+    
+    long helper(int A[] , long range){
+        
+        int i = 0, j=0;
+        
+        long sum = 0 , res = 0 ;
+        
+        while(j < A.length){
+            
+            sum += A[j];
+            
+            while(sum > range){
+                
+                sum -= A[i++];
+            }
+            
+            res += j - i + 1;
+            j++;
+        }
+        
+        return res;
+    }
