@@ -1,0 +1,30 @@
+class Sol
+{
+    int countRev (String s)
+    {
+        
+        if(s.length()%2!=0) return -1;
+        
+        int openBracket = 0 , closeBracket = 0;
+        
+        for(int i = 0; i < s.length(); i++){
+            
+           if(s.charAt(i) == '{')
+           openBracket++;
+           
+           else{
+               
+               if(openBracket == 0) 
+               closeBracket++;
+               
+               else
+               openBracket--;
+           }
+            
+        }
+        
+    
+        
+        return (int)(Math.ceil(openBracket/2.0) + Math.ceil(closeBracket/2.0));
+    }
+}
