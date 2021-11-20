@@ -1,7 +1,8 @@
-class Solution
+class Solution 
 
 {
-
+    
+    
     static int sum_at_distK(Node root, int target, int k){
         
        
@@ -18,7 +19,7 @@ class Solution
         q.add(t);
         seen.add(t);
         
-        int sum = target;
+        int sum = 0;
         
         while(!q.isEmpty()){
             
@@ -66,7 +67,7 @@ class Solution
         }
         
         
-       return sum-target; 
+       return sum; 
        
     }
     
@@ -115,4 +116,5 @@ class Solution
         return t;
     }
 
-}             
+}
+
