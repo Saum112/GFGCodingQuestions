@@ -1,0 +1,118 @@
+class Solution
+
+{
+
+    static int sum_at_distK(Node root, int target, int k){
+        
+       
+        if(root == null) return 0;
+        
+        HashMap<Node, Node> parentMap = new HashMap<>();
+        Node t = findParent(parentMap, target , root);
+        
+        if (t==null) 
+           return 0;
+           
+        Queue<Node> q = new LinkedList<>();
+        HashSet<Node> seen = new HashSet<>();
+        q.add(t);
+        seen.add(t);
+        
+        int sum = target;
+        
+        while(!q.isEmpty()){
+            
+            int size= q.size();
+            
+            for(int i =0; i <size; i++){
+                
+                Node curr = q.poll();
+                
+                if(curr != null ){
+                    
+        
+
+                sum += curr.data;
+                
+
+                if(curr.left != null && !seen.contains(curr.left)){
+                    q.add(curr.left); 
+                    seen.add(curr.left);
+
+                }
+                
+                if(curr.right != null && !seen.contains(curr.right)){
+                    q.add(curr.right); 
+                    seen.add(curr.right);
+
+                }
+                
+                if(parentMap.containsKey(curr) && !seen.contains(parentMap.get(curr))){
+                    q.add(parentMap.get(curr));
+                    seen.add(parentMap.get(curr));
+
+                }
+                
+                
+            }
+            
+            }
+            
+            k--;
+            
+            if(k<0) break;
+            
+            
+        }
+        
+        
+       return sum-target; 
+       
+    }
+    
+    
+    private static Node findParent(HashMap<Node, Node> map, int target , Node root){
+       
+        Node t = null ; 
+       
+       
+        if(root == null) return t;
+        
+        map.put(root , null);
+        
+        Queue<Node>q = new LinkedList<>();
+        
+        q.offer(root);
+        
+        while(!q.isEmpty())
+        {
+            
+          Node p=q.poll();
+          
+          if (p.data==target)
+          {
+              t=p;
+          }
+        
+        if (p.right != null)
+        {
+                       
+
+            map.put(p.right , p);
+            q.offer(p.right);
+            
+        }
+        if (p.left != null)
+        {
+            map.put(p.left , p);
+            q.offer(p.left);
+        }
+        
+
+        }
+        
+
+        return t;
+    }
+
+}             
