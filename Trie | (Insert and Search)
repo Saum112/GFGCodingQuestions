@@ -1,0 +1,41 @@
+//Function to insert string into TRIE.
+static void insert(TrieNode root, String key) 
+{
+    TrieNode curr = root;
+    
+    for(int i = 0; i < key.length() ; i++){
+        
+        int val = key.charAt(i)-'a';
+        
+        if(curr.children[val] == null){
+            
+            curr.children[val] = new TrieNode();
+        }
+        
+        curr = curr.children[val];
+    }
+    
+    curr.isEndOfWord=true;
+}
+
+//Function to use TRIE data structure and search the given string.
+static boolean search(TrieNode root, String key)
+{
+    TrieNode curr = root;
+    
+    for(int i = 0; i < key.length() ; i++){
+        
+        int val = key.charAt(i)-'a';
+        
+        if(curr.children[val] == null){
+            
+            return false;
+        }
+        
+        curr = curr.children[val];
+        
+    }
+    
+    return curr.isEndOfWord;
+}
+
