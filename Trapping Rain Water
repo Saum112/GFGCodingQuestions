@@ -1,0 +1,37 @@
+  static long trappingWater(int arr[], int n) { 
+        
+        
+        int maxLeft = arr[0] , maxRight = arr[n-1] , left = 1 , right = n-2 ;
+        long trappedWater = 0;
+        
+        while(left <= right){
+            
+            if(maxLeft < maxRight ){
+                
+                if(arr[left] >= maxLeft){
+                    
+                    maxLeft = arr[left];
+                }
+                
+                else
+                trappedWater += maxLeft-arr[left];
+                
+                left++;
+            }
+            
+            else{
+                
+                if(arr[right] >= maxRight){
+                    
+                    maxRight = arr[right];
+                }
+                
+                else
+                trappedWater += maxRight-arr[right];
+                
+                right--;
+            }
+        }
+        
+        return trappedWater;
+    }
