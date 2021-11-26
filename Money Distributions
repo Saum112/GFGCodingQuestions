@@ -1,0 +1,55 @@
+class Solution
+{
+    
+    public long exp(long a1 , long a2 , long mod){
+        
+        long ans = 1;
+        
+        while(a2 > 0){
+            
+            if((a2 & 1) != 0 ){
+                
+                ans = (ans*a1)%mod;
+            }
+            
+            a1 = (a1*a1)%mod;
+            
+            a2>>=1;
+        }
+        
+        return ans;
+    }
+    
+    public int result(int n , int r){
+        
+        long ans = 1 ;
+        
+        if(r > n-r)
+        r = n-r;
+        
+        long mod = 1000000007;
+        
+        for(int i = 0; i<r ; i++){
+            
+            ans = (ans*(n-i))%mod;
+            ans = ans*exp(i+1 , mod-2 , mod)%mod;
+        }
+        
+        return (int)ans;
+        
+    }
+    
+    public int totalWays(int n, int k)
+    {
+        
+        if(k>n) return 0;
+        
+        if(k == n) return 1;
+        
+        int res = result(n-1 , k-1);
+        
+        
+        return res;
+        
+    }
+}
