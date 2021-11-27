@@ -1,0 +1,33 @@
+class Solve
+{
+    static int countTriplets(Node head, int x) 
+    { 
+        int count = 0;
+        
+         HashMap<Integer,Node> map = new HashMap<Integer,Node>();
+
+        for(Node ptr1 = head ; ptr1 != null ; ptr1 = ptr1.next){
+            
+           map.put(ptr1.data , ptr1);
+        }
+        
+        for(Node ptr1 = head ; ptr1!=null ; ptr1 = ptr1.next){
+            
+            for(Node ptr2 = ptr1.next ; ptr2!=null ; ptr2 = ptr2.next){
+                
+                int sum = ptr1.data + ptr2.data ; 
+                
+                if(map.containsKey (x - sum) && map.get(x - sum) != ptr1 &&
+                        map.get(x - sum) != ptr2)
+                        
+                        {
+                           // System.out.println(x-sum + "  " + ptr2.data + "  "+ptr1.data);
+                            count++;
+                        }
+            }
+        }
+        
+        return count/3;
+        
+    } 
+}
