@@ -1,0 +1,25 @@
+class Solution
+{
+    
+    
+    public int NthRoot(int n, int m)
+    {
+            int low =0 , high = m ,mid;
+            
+            while(low < high){
+                
+                mid = low+(high-low)/2;
+                
+                if(Math.pow(mid , n) < m)
+                
+                low = mid+1;
+                
+                else
+                
+                high = mid;
+            }
+            
+            return Math.pow(low , n) == m? low : -1;
+       
+    }
+}
