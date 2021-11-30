@@ -1,0 +1,105 @@
+class Element {
+		int val;
+		int idx;
+		int row;
+
+		public Element(int rows, int index, int value) {
+			val = value;
+			idx = index;
+			row = rows;
+		}
+	}
+    
+class Solution {
+    public Range shortestRange(Node root) {
+        
+
+       List<List<Integer>> level = levelOrder(root);
+       
+       
+       return smallestRange(level); 
+        
+    }
+    
+    
+      public List<List<Integer>> levelOrder(Node root) {
+        
+        List<List<Integer>> res = new ArrayList<>();
+        
+        Queue<Node> queue = new LinkedList<>();
+        
+        if(root == null)
+            return res;
+        
+        queue.offer(root);
+        
+        while(!queue.isEmpty()){
+            
+        int levelNum = queue.size();
+            
+        List<Integer> subList = new LinkedList<Integer>();
+            
+        while(levelNum>0){
+            
+             if(queue.peek().left != null) queue.offer(queue.peek().left);
+             if(queue.peek().right != null) queue.offer(queue.peek().right);
+             subList.add(queue.poll().data);
+            
+            levelNum--;
+        }
+            
+            res.add(subList);
+
+
+        }
+        
+        return res;
+    }
+    
+    public Range smallestRange(List<List<Integer>> nums) {
+        
+        if(nums.isEmpty()) return new Range(0,0);
+        
+        PriorityQueue<Element> pq = new PriorityQueue<Element>(new Comparator<Element>() {
+			public int compare(Element a, Element b) {
+				return a.val - b.val;
+			}
+		});
+		
+		int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
+		for (int i = 0; i < nums.size(); i++) {
+			Element e = new Element(i, 0, nums.get(i).get(0));
+			pq.offer(e);
+			max = Math.max(max, nums.get(i).get(0));
+		}
+		
+		
+		
+		int range = Integer.MAX_VALUE;
+		int start = -1, end = -1;
+		while (pq.size() == nums.size()) {
+
+			Element curr = pq.poll();
+			if (max - curr.val < range) {
+				range = max - curr.val;
+				start = curr.val;
+				end = max;
+			}
+			if (curr.idx + 1 < nums.get(curr.row).size()) {
+				curr.idx = curr.idx + 1;
+				curr.val = nums.get(curr.row).get(curr.idx);
+				pq.offer(curr);
+				if (curr.val > max) {
+					max = curr.val;
+				}
+			}
+		}
+
+		return new Range( start, end );
+		
+       
+    }
+    
+    
+    
+}
