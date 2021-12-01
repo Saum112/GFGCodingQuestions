@@ -1,0 +1,43 @@
+class Solution {
+    // Function to find maximum product subarray
+    long maxProduct(int[] arr, int n) {
+        
+        long maxSofar = 1 , maxProduct = Integer.MIN_VALUE;
+        
+        for(int i = 0; i < arr.length ; i++){
+            
+            maxSofar *= arr[i];
+            
+            if(maxSofar > maxProduct){
+                
+                maxProduct = maxSofar;
+            }
+            
+            if(maxSofar == 0){
+                maxSofar = 1;
+            }
+        }
+        
+        maxSofar = 1;
+        
+        for(int i = n-1 ; i>=0 ; i--){
+            
+             maxSofar *= arr[i];
+            
+            if(maxSofar > maxProduct){
+                
+                maxProduct = maxSofar;
+            }
+            
+             if(maxSofar == 0){
+                maxSofar = 1;
+            }
+            
+        }
+        
+        
+        
+        return maxProduct;
+    
+    }
+}
