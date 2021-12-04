@@ -7,11 +7,11 @@ class Solution
         
         
         
-        for(int i = 0 ; i < matrix.length ; i++){
+        for(int i = 0 ; i < m ; i++){
             
             int decimal = 0;
             
-            for(int j = 0 ; j < matrix[0].length ; j++){
+            for(int j = 0 ; j < n ; j++){
                 
                 decimal += matrix[i][j]*Math.pow(2 , j);
 
