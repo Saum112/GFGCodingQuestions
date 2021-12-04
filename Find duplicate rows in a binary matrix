@@ -1,0 +1,33 @@
+class Solution
+{
+    public static ArrayList<Integer> repeatedRows(int matrix[][], int m, int n)
+    {
+        Set<Integer> s = new HashSet<>();
+        ArrayList <Integer> result = new ArrayList<>();
+        
+        
+        
+        for(int i = 0 ; i < matrix.length ; i++){
+            
+            int decimal = 0;
+            
+            for(int j = 0 ; j < matrix[0].length ; j++){
+                
+                decimal += matrix[i][j]*Math.pow(2 , j);
+
+                
+            }
+            
+
+            if(s.contains(decimal)){
+                result.add(i);
+            }
+            
+            else {
+                s.add(decimal);
+            }
+        }
+        
+        return result;
+    }
+}
