@@ -1,0 +1,41 @@
+class Solution {
+    static int countTriplets(int Arr[], int N, int L, int R) {
+        
+        Arrays.sort(Arr);
+        int c1 = helper(Arr , N , L-1);
+        int c2 = helper(Arr , N , R);
+        
+        return c2-c1;
+        
+    }
+    
+    private static int helper(int a [] , int n , int x){
+        
+        int res = 0;
+
+        for(int i = 0; i<n-2 ; i++){
+            
+            int j = i+1;
+            int k = n-1;
+            
+            
+            while(j < k){
+                
+                int sum = a[i]+a[j]+a[k];
+                if(sum > x){
+                    k--;
+                }
+                
+                else{
+                   
+                   res += (k-j);
+                   j++;
+                }
+                
+            }
+              
+        }
+        
+        return res;
+    }
+}
