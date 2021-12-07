@@ -1,0 +1,45 @@
+class Sol
+{
+    public static int closestToZero (int arr[], int n)
+    {
+        Arrays.sort(arr);
+        
+        if(n < 2)
+        return 2*arr[0];
+        
+        else if(arr[0] > 0)
+        return arr[0]+arr[1];
+        
+        else if(arr[n-1] < 0){
+        
+        return arr[n - 1] + arr[n - 2];
+        
+        }
+                
+        
+        int lo = 0 , hi = n-1 , minSum = Integer.MAX_VALUE;
+        
+        while(lo < hi){
+            
+            int sum = arr[lo]+arr[hi];
+            
+            if(Math.abs(sum) < Math.abs(minSum)){
+                       
+
+            minSum = sum;
+            
+            }
+            
+            if(Math.abs(sum) == Math.abs(minSum))
+            minSum = Math.max(minSum , sum);
+            
+            if(sum < 0)
+            lo++;
+            
+            else 
+            hi--;
+        }
+        
+        return minSum;
+    }
+}
