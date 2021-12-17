@@ -1,0 +1,50 @@
+class Node {
+   int data;
+   Node left;
+   Node right;
+   Node(int x) {
+       this.data = x;
+      
+   }
+} 
+ 
+ 
+class Solution {
+    
+public ArrayList<String>huffmanCodes(String S, int f[], int n) {
+   PriorityQueue <Node> q = new PriorityQueue<>
+         (new Comparator<Node>(){
+
+       public int compare(Node n1, Node n2) {
+           if (n1.data >= n2.data)
+               return 1;
+           else
+           return -1;
+       }
+   });
+   
+   for (int i = 0; i < n; i++) 
+   q.add(new Node(f[i]));
+   while (q.size() != 1) {
+       Node first=q.remove();
+       Node second = q.remove();
+       Node result = new Node(first.data + second.data);
+       result.left = first;
+       result.right = second;
+       q.add(result);
+   }
+   ArrayList <String> res = new ArrayList<>();
+   Node root = q.remove();
+   preorder(root, "", res);
+   return res;
+}
+public static void preorder(Node root, String s, ArrayList <String> res) {
+
+   if (root == null)
+       return;
+   if (root.left == null && root.right == null)
+       res.add(s);
+   preorder(root.left, s + "0" , res);
+   preorder(root.right, s + "1",res);
+}
+}
