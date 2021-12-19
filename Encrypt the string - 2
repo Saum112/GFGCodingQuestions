@@ -1,0 +1,57 @@
+class Solution {
+    
+    
+    private static String hexConvert(int c){
+        
+    StringBuilder res = new StringBuilder();
+        
+        while(c>0){
+            
+            int rem = c%16;
+            char ch ;
+            if(rem < 10){
+                ch = (char)(rem+48);
+            }
+            
+            else{
+                
+                ch = (char)(rem+87);
+            }
+            
+            res.append(ch);
+            c = c/16;
+        }
+        
+        return res.toString();
+        
+    }
+    static String encryptString(String s){
+        // code here
+        
+        StringBuilder res = new StringBuilder();
+        
+        for(int i = 0 ; i<s.length() ; i++)
+        {
+            
+            char c = s.charAt(i);
+            int count = 0;
+            String hexaDecimal;
+            
+            while(i < s.length() && s.charAt(i)==c){
+                
+                count++;
+                i++;
+            }
+            
+            i--;
+            
+            hexaDecimal = hexConvert(count);
+            res.append(c);
+            res.append(hexaDecimal);
+            
+        }
+        
+        res.reverse();
+        return res.toString();
+    }
+};
