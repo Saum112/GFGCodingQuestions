@@ -1,0 +1,60 @@
+class Solution {
+    
+    private static long sumOfelements(long a[] , int n){
+        
+        long sum = 0;
+        
+        for(int i = 0 ; i<n ; i++){
+            
+            sum += a[i];
+        }
+        
+        return sum;
+    }
+
+    public static long maximizeSum(long a[], int n, int k)
+    {
+       
+       Arrays.sort(a);
+       int i ;
+      
+       
+      for(i = 0 ; i<n ; i++){
+           
+          if(a[i]<0 && k!=0 )
+          {
+              a[i] = -a[i];
+              k--;
+              continue;
+          }
+          
+          else
+          break;
+      }
+      
+      
+      
+      if(i == n)
+      i = i-1;
+      
+      if(i == 0)
+      i = i+1;   
+      
+      if(k%2 == 0 || k == 0)
+      {
+          return sumOfelements(a , n);
+         
+      }
+      
+      if(Math.abs(a[i]) >= Math.abs(a[i-1])){
+
+      i--;
+      }
+      
+      a[i] = -a[i];
+      
+    return sumOfelements(a , n);
+
+    
+    }
+}
