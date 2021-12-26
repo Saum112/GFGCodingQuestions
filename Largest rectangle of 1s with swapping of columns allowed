@@ -1,0 +1,57 @@
+class Solution {
+    int maxArea(boolean[][] mat, int r, int c) {
+    
+        int aux[][] = new int[r + 1][c + 1];
+ 
+        for (int i = 0; i < c; i++)
+        {
+            aux[0][i] = (mat[0][i] == false ? 0 : 1) ;
+ 
+            for (int j = 1; j < r; j++)
+            {
+                aux[j][i] = (mat[j][i] == false) ? 0 : aux[j - 1][i] + 1;
+            }
+        }
+        
+        
+        for (int i = 0; i < r; i++)
+        {
+            int count[] = new int[r + 1];
+ 
+            for (int j = 0; j < c ; j++)
+            {
+                count[aux[i][j]]++;
+            }
+ 
+            int col = 0;
+            for (int j = r; j >= 0; j--)
+            {
+                if (count[j] > 0)
+                {
+                    for (int k = 0; k < count[j]; k++)
+                    {
+                        aux[i][col] = j;
+                        col++;
+                    }
+                }
+            }
+        }
+        
+        int area, maxArea = 0;
+        for (int i = 0; i < r; i++)
+        {
+            for (int j = 0; j < c; j++)
+            {
+                
+                area = (j + 1) * aux[i][j];
+                if (area > maxArea)
+                {
+                    maxArea = area;
+                }
+            }
+        }
+        return maxArea;
+        
+
+    }
+}
