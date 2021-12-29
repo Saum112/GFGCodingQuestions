@@ -1,0 +1,21 @@
+class Solution{
+
+	public int minCoins(int coins[], int M, int V) 
+	{ 
+	    int dp[] = new int[V + 1];
+ 
+        Arrays.fill(dp , V+1);
+        
+        dp[0] = 0;
+        
+        for(int coin : coins){
+            
+            for(int i = coin ; i <= V ; i++){
+                
+                dp[i] = Math.min(dp[i] , dp[i - coin]+1);
+            }
+        }
+        
+        return dp[V]<=V ? dp[V] : -1;
+	}
+}
