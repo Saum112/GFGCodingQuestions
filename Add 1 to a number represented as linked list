@@ -1,0 +1,54 @@
+class Solution
+{
+    
+    private static Node reverse(Node head)
+    {
+        Node  prev = null;
+        Node  curr = head;
+        Node  next = null;
+        
+        while(curr != NULL)
+        {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        
+        return prev;
+    }
+    
+    public static Node addOne(Node head) 
+    { 
+        
+        head = reverse(head);
+        
+        Node curr = head, prev = head;
+    
+        int sum = curr.data + 1;
+        curr.data = sum % 10;
+        int carry = sum / 10;
+    
+        curr = curr.next;
+        
+        while(curr != null)
+        {
+            sum = curr.data + carry;
+            curr.data = sum % 10;
+            carry = sum / 10;
+            prev = curr;
+            curr = curr.next;
+        }
+        
+        if(carry != 0)
+        {
+            prev.next = new Node(carry);
+        }
+        
+        head = reverse(head);
+        
+        return head;
+
+       
+    }
+}
