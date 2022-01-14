@@ -1,0 +1,25 @@
+class Solution{
+    
+     int s = 0;
+    // modify the BST and return its root
+    public Node modify(Node root)
+    {
+        
+       helper(root);
+       
+       return root;
+        
+    }
+    
+    private void helper(Node root){
+        
+        if (root == null) 
+            return;
+            
+        helper(root.right);
+        root.data += s;
+        s = root.data;
+        helper(root.left);
+    }
+    
+}
