@@ -1,0 +1,60 @@
+class Solution
+{
+    public static ArrayList<Integer> printCousins(Node root, Node node_to_find)
+    {
+        Queue<Node> q = new LinkedList<>();
+        ArrayList<Integer> res = new ArrayList<Integer>();
+        
+        q.offer(root);
+        
+        int flag = 0 ,size = 0;
+        
+        while (!q.isEmpty() && flag == 0){
+            size = q.size();
+            
+            while(size > 0){
+            
+            Node temp = q.peek();
+              
+            q.remove();
+        
+            if(temp.left == node_to_find || temp.right == node_to_find){
+                flag = 1;
+            }
+            else{
+                if(temp.left != null)
+                q.offer(temp.left);
+                
+                if(temp.right != null)
+                q.offer(temp.right);
+            }
+            
+            size--;
+        }
+        
+        }
+        
+        if(flag == 1){
+            
+            size = q.size();
+            
+            if(size == 0)
+            {
+                res.add(-1);
+            }
+            
+            while(!q.isEmpty()){
+                
+                res.add(q.peek().data);
+                q.remove();
+            }
+        }
+        
+        else{
+            
+            res.add(-1);
+        }
+        
+        return res;
+    }
+}
