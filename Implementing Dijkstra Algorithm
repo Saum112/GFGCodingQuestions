@@ -1,0 +1,68 @@
+class Node implements Comparable<Node>{
+    
+    int v;
+    int dis;
+    
+    Node(int v , int dis){
+        
+        this.v = v;
+        this.dis = dis;
+    }
+    
+    public int compareTo(Node temp){
+        
+        return this.dis-temp.dis;
+    }
+    
+}
+class Solution
+{
+    //Function to find the shortest distance of all the vertices
+    //from the source vertex S.
+    static int[] dijkstra(int v, ArrayList<ArrayList<ArrayList<Integer>>> adj, int s)
+    {
+         PriorityQueue<Node> q = new PriorityQueue<>();
+         boolean vis[] = new boolean[v];
+         int distance[] = new int[v];
+         Arrays.fill(distance , Integer.MAX_VALUE);
+         distance[s] = 0;
+         
+        
+         q.add(new Node(s,0));
+         
+         
+         while(!q.isEmpty()){
+             
+             Node curr = q.remove();
+             if(vis[curr.v] == true) 
+             continue;
+             
+             vis[curr.v] = true;
+            
+
+             for(ArrayList<Integer> i : adj.get(curr.v)){
+                 
+                 int nb = i.get(0);
+                 int w = i.get(1);
+                 if(vis[nb] == false){
+                     
+                    
+                    if(w+curr.dis < distance[nb]){
+                        
+                        distance[nb] = w+curr.dis;
+                        q.add(new Node(nb , w+curr.dis));
+                    }
+                     
+                
+                     
+                 }
+             }
+             
+             
+         }
+         
+         return distance;
+        
+    }
+    
+}
