@@ -1,0 +1,47 @@
+class Solution {
+    ArrayList<Integer> maximizeArray(int[] arr1, int[] arr2, int n) {
+        
+         ArrayList<Integer> result = new ArrayList<>();
+         Set<Integer> set = new HashSet<>();
+         Integer[] arr3 = new Integer[n*2];
+         
+         int c = 0;
+         
+         for(int i = 0 ;i < n ; i++){
+             
+             arr3[c] = arr2[i];
+             c+=1;
+             
+         }
+         
+         for(int i = 0 ;i < n ; i++){
+             
+             arr3[c] = arr1[i];
+             c+=1;
+         }
+        Arrays.sort(arr3, Collections.reverseOrder()); 
+        
+         for(Integer num: arr3){
+            set.add(num);
+            if(set.size() == n) 
+            break;
+        }
+        
+        for(int x: arr2){
+            if(set.contains(x)){
+                result.add(x);
+                set.remove(x);
+            }
+        }
+        
+        for(int x: arr1){
+            if(set.contains(x)){
+                result.add(x);
+                set.remove(x);
+            }
+        }
+        
+        return result; 
+        
+    }
+}
