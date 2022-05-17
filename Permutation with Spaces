@@ -1,0 +1,36 @@
+class Solution{
+    
+    ArrayList<String> result = new ArrayList<>();
+    
+    ArrayList<String> permutation(String S){
+        // Code Here
+        
+        String sb = "";
+        sb += S.charAt(0); //A
+        S = S.substring(1); 
+        
+        helper(sb , S);
+        return result;
+        
+        
+    }
+    
+    private void helper(String val , String inp){
+        
+        if(inp.length() == 0){
+            result.add(val);
+                           
+
+            return;
+        }
+        
+        
+        char c1 = inp.charAt(0); 
+        
+        helper(val+" "+c1 , inp.substring(1));
+        helper(val+c1 , inp.substring(1));
+
+        
+    }
+    
+}
