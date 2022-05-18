@@ -1,0 +1,48 @@
+class Solution
+{
+    int transform (String A, String B)
+    {
+        
+        
+        int s1 = 0 , s2 = 0 , m = A.length() , n = B.length();
+        
+        if(m != n){
+            
+            return -1;
+        }
+        
+        for(int i = 0 ; i < m ; i++)
+        {
+            s1 += A.charAt(i);
+        }
+        
+        for(int i = 0 ; i < n ; i++)
+        {
+            s2 += B.charAt(i);
+        }
+        
+        if(s1 != s2)
+        {
+            return -1;
+        }
+        
+        int i = m-1 , j = n-1 , c = 0;
+        
+        while(i >=0 && j >= 0){
+            
+            if(A.charAt(i) == B.charAt(j))
+            {
+                i--;
+                j--;
+            }
+            
+            else{
+                
+                c++;
+                i--;
+            }
+            
+        }
+      return c;  
+    }
+}
