@@ -1,0 +1,47 @@
+class Solution {
+    
+    public void nullPoints(int n, double magnets[], double getAnswer[])
+    {
+        
+        for(int i = 0 ; i < n-1 ; i++){
+            
+            getAnswer[i] = helper(magnets[i],magnets[i+1],
+           magnets,n);
+        }
+    }
+    
+    double helper(double low , double high , double magnets[] , int n)
+    
+    {
+        
+       while( low <= high){
+           
+           double mid = (low+high)/2 , ans = 0;
+           
+           double force = 0.0;
+           
+           for(int i = 0 ; i < n ; i++){
+               
+               force += 1/(mid-magnets[i]);  
+           }
+           
+           if(Math.abs(force) < 0.000001){
+               
+               return mid;
+           }
+           
+           else if(force < 0)
+           {
+               high = mid;
+           }
+           
+           else{
+               
+               low = mid;
+           }
+           
+       }
+        
+        return low;
+    }
+}
