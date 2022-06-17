@@ -1,0 +1,43 @@
+class Solution
+{
+    public boolean isBipartite(int V, ArrayList<ArrayList<Integer>>adj)
+    {
+        // Code here
+        
+        int n = adj.size();
+        int[] colors = new int[V];
+
+        
+        for(int i = 0 ; i < n ; i++){
+        
+        if (colors[i]  == 1 || colors[i]  == -1) 
+            continue;
+            
+            Queue<Integer> queue = new LinkedList<>();
+            queue.add(i);
+            colors[i] = 1; 
+            
+             while (!queue.isEmpty()) {
+                 
+                int curr = queue.poll();
+                
+                for(int ele : adj.get(curr)){
+                    
+                    if(colors[ele] == 0){
+                        
+                        colors[ele] = -1*colors[curr];
+                        
+                        queue.add(ele);
+                       // System.out.println(ele+ " "+curr);
+                    }
+                    if(colors[ele] == colors[curr])
+                    return false;
+                }
+                 
+                 
+             }
+        }
+        
+        return true;
+    }
+}
