@@ -1,0 +1,34 @@
+class Solution
+{
+    public static Node reverseBetween(Node head, int m, int n)
+    {
+        //code here
+        
+        
+        if(head == null)
+        return null;
+        
+        Node dummy = new Node(0);
+        Node prev = dummy;
+        dummy.next = head;
+        
+        for(int i = 0 ; i < m-1 ; i++){
+            
+            prev = prev.next;
+        } 
+    
+        Node start = prev.next;
+        Node nex =  start.next;
+    
+    
+        for(int i = 0 ; i < n-m ; i++){
+            
+            start.next = nex.next;
+            nex.next = prev.next;
+            prev.next = nex;
+            nex = start.next;
+        }
+        
+        return dummy.next;
+    }
+}
