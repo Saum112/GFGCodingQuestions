@@ -1,0 +1,45 @@
+class Solution
+{ 
+    // Method to calculate distinct sub-array 
+    static int countDistinctSubarray(int arr[], int n) 
+    
+    {
+        int res = 0;
+        HashSet<Integer> set = new HashSet<>();
+        HashMap<Integer , Integer> mp = new HashMap<>();
+        
+        for(int ele : arr){
+            set.add(ele);
+        }
+        
+        int num = set.size();
+        
+        for(int i = 0 , j = 0 ; i < arr.length ; i++){
+            
+            
+            mp.put(arr[i] , mp.getOrDefault(arr[i],0)+1);
+            
+            if(mp.size() == num){
+                res = res+(arr.length-i);
+               
+            } 
+            
+            while(mp.size() >= num && j <= i){
+                
+                mp.put(arr[j] , mp.get(arr[j])-1);
+                
+                if(mp.get(arr[j]) <= 0)
+                mp.remove(arr[j]);
+                
+                if(mp.size() == num){
+                res += (arr.length-i);
+                 
+                }
+                
+                j++;
+            }
+        }
+        
+     return res;  
+    }
+}
