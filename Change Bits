@@ -1,0 +1,22 @@
+class Solution {
+    static int[] changeBits(int n) {
+        // code here
+        int c = 0 , temp = n;
+        
+        while(temp > 0){
+            
+            c++;
+            temp /= 2;
+        }
+        
+        int newNumber = ((int)Math.pow(2,c))-1;
+        
+        int[] res = new int[2];
+        
+        res[0] = newNumber-n;
+        res[1] = newNumber;
+        
+        return res;
+    }
+};
+
