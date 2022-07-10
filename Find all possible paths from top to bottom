@@ -1,0 +1,37 @@
+class Solution {
+    
+    public static void helper(int i , int j , int[][] grid , ArrayList<Integer>path , ArrayList<ArrayList<Integer>> ans
+    ,int n , int m){
+        
+       if(i >= n || j >= m){
+           
+           return;
+       }
+       
+       if(i == n-1 && j == m-1){
+
+           path.add(grid[i][j]);                                                         
+           ans.add(new ArrayList<Integer>(path));           
+           path.remove(path.size()-1);
+           return;
+       }
+        
+        path.add(grid[i][j]);
+        helper(i+1 , j , grid , path , ans , n , m);
+        helper(i , j+1 , grid , path , ans , n , m);
+        path.remove(path.size() - 1);
+        
+    }
+    public static ArrayList<ArrayList<Integer>> findAllPossiblePaths(int n,int m, int[][] grid) {
+        // code here
+        
+        ArrayList<Integer>path = new ArrayList();
+        ArrayList<ArrayList<Integer>> ans = new ArrayList();
+        
+        helper(0 , 0 , grid , path , ans , n , m);
+        
+        return ans;
+        
+    }
+}
+        
