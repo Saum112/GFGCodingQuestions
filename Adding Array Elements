@@ -9,7 +9,7 @@ class Solution {
        
        int c = 0;
        
-       while(pq.peek()<k)
+       while(!pq.isEmpty() && pq.peek()<k)
        {
            
            int a = pq.poll();
