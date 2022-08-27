@@ -1,0 +1,45 @@
+
+class Solution {
+
+    void rearrange(int arr[], int n) {
+        // code here
+        
+        ArrayList<Integer> positive = new ArrayList<>();
+        
+        ArrayList<Integer> negative = new ArrayList<>();
+        
+        for(int ele : arr){
+            
+            if(ele < 0)
+            negative.add(ele);
+            
+            else
+            positive.add(ele);
+        }
+        
+        int i = 0 , idx = 0;
+        
+        while(i < positive.size() && i < negative.size()){
+            
+            arr[idx] = positive.get(i);
+            idx++;
+            arr[idx] =  negative.get(i);
+            idx++;
+            i++;
+        }
+        
+         while(i< positive.size()) {
+           arr[idx]=positive.get(i);
+           i++;
+           idx++;
+       }
+       
+       while(i< negative.size()) {
+           arr[idx]=negative.get(i);
+           i++;
+           idx++;
+       }
+        
+      
+    }
+}
