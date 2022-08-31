@@ -1,0 +1,37 @@
+class Solution
+{
+    public int[] DistinctSum(int[] nums)
+    {
+        // Code here
+        
+        int[][]dp=new int[101][10001];
+        Set<Integer> set=new HashSet<>();
+        helper(nums,0,0,set,dp);
+        int[] res=new int[set.size()];
+        int i=0;
+        for(int ele:set){
+            res[i]=ele;
+            i++;
+        }
+        Arrays.sort(res);
+        return res;
+    
+    
+    }
+    
+    void helper(int[] nums, int i , int sum , Set<Integer> s,int[][]dp){
+        
+        if(i == nums.length){
+            s.add(sum);
+            return;
+        }
+        
+        if(dp[i][sum] != 0){
+            return;
+        }
+        
+        dp[i][sum] = 1;
+        helper(nums , i+1 , sum , s , dp);
+        helper(nums , i+1 , sum+nums[i] , s, dp);
+    }
+}
