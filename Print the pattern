@@ -1,0 +1,43 @@
+class Solution{
+    static List<String> pattern(int n){
+        
+        // code here
+        
+        List<String> ans = new ArrayList<>();
+        int start = 1;
+        
+    
+        for(int i = 0 ; i < n ; i++){
+            
+            String str = "";
+            
+            for(int j = 0 ; j < 2*i ; j++){
+                
+                str+="-";
+            }
+            
+            for(int j = 0 ; j < n-i ; j++){
+                
+                str += String.valueOf(start++) + "*";
+            }
+           ans.add(str); 
+        }
+
+        for(int i = n-1; i >=0 ; i--) {
+            
+            String x = ans.get(i);
+           
+            for(int j = 0; j < n-i; j++) {
+                
+                x += String.valueOf(start++) + "*";
+            }
+            
+            
+            ans.set(i, x.substring(0, x.length()-1));
+        }
+        return ans;
+        
+        
+    }
+}
+
