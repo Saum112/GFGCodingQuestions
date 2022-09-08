@@ -1,0 +1,29 @@
+
+class Tree {
+    
+    int c = 0;
+    int ans = 0;
+    
+    
+    int sum(Node root, int k) { 
+        
+     
+     if(root == null){
+         
+         return 0;
+     }
+     
+     sum(root.left , k);
+     
+     if(c < k){
+         
+         ans += root.data;
+         c++;
+         
+     }
+     
+      sum(root.right , k);
+      
+      return ans;
+    } 
+}
