@@ -1,0 +1,47 @@
+class Solution
+{
+    public int findOccurrence(char mat[][], String target)
+    {
+        // Write your code here
+        
+        int res = 0;
+        
+        for(int i = 0 ; i < mat.length ; i++){
+            
+            for(int j = 0 ; j < mat[0].length ; j++){
+                
+                res += helper(mat , i , j , target , 0);
+            }
+        }
+        
+        return res;
+    }
+    
+    int helper(char mat[][] , int i , int j , String target , int idx){
+        
+        int found = 0 ; 
+        
+        if(i < mat.length && i >= 0 && j < mat[0].length && j>=0 &&
+                    target.charAt(idx) == mat[i][j]){
+            
+            mat[i][j] = '#';
+            
+            if(idx == target.length()-1){
+                
+                found = 1;
+            }
+            
+            else{
+                
+                found += helper(mat , i , j-1 , target , idx+1);
+                found += helper(mat , i+1 , j , target , idx+1);
+                found += helper(mat , i-1 , j , target , idx+1);
+                found += helper(mat , i , j+1 , target , idx+1);
+            }
+            
+            mat[i][j] =  target.charAt(idx);
+        }
+        
+        return found;
+    }
+}
