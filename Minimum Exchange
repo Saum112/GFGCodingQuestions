@@ -38,7 +38,8 @@ class Solution
                 }
             }
         }
-        
+        if (seq1%2==0) seq1 = seq1/2;
+        if (seq2%2==0) seq2 = seq2/2;
         return Math.min(seq1 , seq2);
     }
     
