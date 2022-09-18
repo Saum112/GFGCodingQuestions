@@ -1,0 +1,52 @@
+class Solution
+{
+    
+    public int Count(int l, int r)
+    {
+        // code here
+        
+        int []prime = new int[r + 1];
+    
+        for(int i = 2 ; i <= r ; i++){
+            
+            prime[i] = 1;
+        }
+        
+        prime[0]=prime[1]=0;
+        
+        for(int i = 2; i*i <= r ; i++){
+            
+            if(prime[i] == 1){
+                
+                for(int j = i*i ; j <= r ; j+=i){
+                    
+                    prime[j] = 0;
+                }        
+            }
+        }
+        
+        
+       int primeCount = 0 , compositeCount = 0 ;
+       
+       if(l == 1)
+       l++;
+       
+       
+       for(int i = l ; i <= r ; i++){
+           
+           if(prime[i] == 1){
+               
+               primeCount++;
+           }
+           
+           else
+           {
+               compositeCount++;
+           }
+       }
+       
+       
+       return compositeCount-primeCount;
+        
+    }
+}
