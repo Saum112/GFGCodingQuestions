@@ -1,0 +1,25 @@
+class Solution:
+    def minLength(self, s, n):
+        st  =  []
+        val =  ["12", "21", "34", "43", "56", "65", "78", "87", "09", "90"]
+       
+       
+        for i in range(n):
+            
+            if len(st) == 0:
+                st.append(s[i])
+                
+            else:
+               
+                temp = ""
+                temp += st[-1]
+                temp += s[i]
+                #12 21
+                
+               
+                if temp in val:
+                    st.pop()
+                    
+                else:
+                    st.append(s[i])
+        return len(st) 
