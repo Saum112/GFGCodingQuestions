@@ -1,0 +1,64 @@
+//1st approach 
+
+
+
+class Solution {
+    
+    static int helper(List<Integer> arr , int k , int idx){
+        
+        if (arr.size() == 1) {
+            
+            return arr.get(0);
+    	}
+    	
+    	idx = ((idx + k - 1) % arr.size());
+    	
+    	arr.remove(idx);
+    	
+    	
+        return helper(arr , k , idx);
+	
+    }
+    static int safePos(int n, int k) {
+        // code here
+        
+    List<Integer> arr = new ArrayList<>();
+	
+	for (int i = 1; i <= n; i++) {
+	        arr.add(i);
+	}
+	
+	    return helper (arr, k, 0);
+	
+    }
+    
+    
+};
+
+
+
+
+
+//2nd approach 
+
+
+class Solution {
+    
+    static int helper(int n , int k){
+        
+        if(n == 1){
+            return 1;
+        }
+        
+        return (helper(n-1 , k)+k-1)%n+1;
+    }
+    static int safePos(int n, int k) {
+        // code here
+        
+        int res = helper(n , k);
+        
+        return res;
+    }
+        
+};
+
