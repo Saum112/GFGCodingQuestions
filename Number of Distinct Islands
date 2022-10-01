@@ -1,0 +1,45 @@
+class Solution {
+
+    int countDistinctIslands(int[][] grid) {
+        // Your Code here
+        
+        int m = grid.length , n = grid[0].length ; 
+        Set<List<Integer>> set=new HashSet<>();
+        
+        for(int i = 0 ; i < m ; i++){
+            
+            for(int j = 0 ; j < n ; j++){
+                
+                if(grid[i][j] == 1){
+                    
+                    List<Integer> li =new ArrayList<>();
+                    dfs(i , j , grid , li , i , j );
+                    
+                    set.add(li);
+                    
+                }
+            }
+        }
+        
+        return set.size();
+    }   
+        private void dfs(int i , int j , int[][] grid , List<Integer> li , int row , int col){
+            
+            if(i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] == 0)
+            {
+                return ;
+            }
+            
+            grid[i][j] = 0;
+            
+            li.add(i-row);
+            li.add(j-col);
+            
+            dfs(i+1, j, grid, li , row , col);
+            dfs(i-1, j, grid, li , row , col);
+            dfs(i, j+1, grid, li , row , col);
+            dfs(i, j-1, grid, li , row , col);
+
+        }
+    
+}
