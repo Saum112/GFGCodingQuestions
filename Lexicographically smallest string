@@ -1,0 +1,63 @@
+class Solution {
+    static String lexicographicallySmallest(String s, int k) {
+        // code here
+        
+        int n = s.length();
+        
+        if(isPowerOfTwo(n)){
+            
+            k = k/2;
+        }
+        
+        else{
+            
+            k = k*2;
+        }
+        
+        Stack<Character> st = new Stack<>();
+        
+        for(int i = 0 ; i < n ; i++){
+            
+            char curr = s.charAt(i);
+            
+            while(!st.isEmpty() && curr < st.peek() && k>0){
+                
+                st.pop();
+                k--;
+            }
+            
+            st.push(curr);
+        }
+        
+        while(k > 0 && !st.isEmpty()){
+
+            st.pop();
+            k--;
+            
+        }
+        
+        StringBuilder sb=new StringBuilder();
+        
+        if(!st.isEmpty()){
+
+            while(!st.isEmpty()){
+                sb.append(st.pop());
+            }
+            
+        }
+        
+        else{
+            
+            return "-1";
+        }
+       
+        return sb.reverse().toString();
+
+        
+    }
+    
+    private static boolean isPowerOfTwo(int n){
+        
+       return ((n & (n - 1)) == 0);
+    }
+}
