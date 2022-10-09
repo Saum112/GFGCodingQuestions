@@ -4,7 +4,7 @@ class Solution
     {
         // code here
         
-        int gap = 0;
+        int gap = 1;
         
         if(isPrime(n)){
             
