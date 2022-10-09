@@ -1,0 +1,45 @@
+class Solution
+{
+    public int NthTerm(int n)
+    {
+        // code here
+        
+        int gap = 0;
+        
+        if(isPrime(n)){
+            
+            return 0;
+        }
+        
+        while(true){
+            
+            if(isPrime(n+gap) || isPrime(n-gap)){
+                
+                break;
+            }
+            
+            gap++;
+        }
+        
+        return gap;
+        
+    }
+    
+    private boolean isPrime(int n){
+        
+        if(n < 2)
+        {
+            return false;
+        }
+        
+        for(int i = 2 ; i <= Math.sqrt(n) ; i++){
+            
+            if(n % i == 0){
+                
+                return false;
+            }
+        }
+            
+            return true;
+    }
+}
