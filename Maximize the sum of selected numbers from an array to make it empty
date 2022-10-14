@@ -1,0 +1,46 @@
+class Complete{
+    
+   
+    // Function for finding maximum and value pair
+    public static int maximizeSum (int arr[], int n) {
+        //Complete the function
+        
+        int sum=0 , max = arr[0]; 
+        
+        for(int i = 0 ; i < n ; i++){
+            
+            if(arr[i] > max){
+                
+                max = arr[i];
+            }
+            
+        }
+        
+        int [] map = new int[max+1];
+        
+        for (int i = 0; i < n; i++){
+            
+            map[arr[i]]++;
+        }
+        
+        for(int i=n-1;i>=0;i--)
+        {
+            
+            int key = arr[i];
+                
+            if(map[key] > 0){
+                
+                sum += key;
+                
+                map[key]--;
+                
+                map[key-1]--;
+            }
+            
+        }
+            
+    return sum;
+
+    }
+    
+}
