@@ -1,0 +1,55 @@
+class Solution{
+    
+    
+   
+    int steppingNumbers(int n, int m){
+        // code here
+        int count = 0 ;
+    
+        for(int i = 0 ; i <= 9 ; i++){
+            
+           count += helper(i , n , m );
+        }
+        
+        return count;
+    }
+    
+    
+    private int helper(int num , int n , int m){
+        
+       int c = 0;
+       Queue<Integer> qu = new LinkedList<>();
+       qu.offer(num);
+       
+       while(!qu.isEmpty()){
+           
+           int curr = qu.poll();
+           
+           if(curr >= n && curr <= m ){
+               c++;           
+               
+           }
+           
+          if(curr == 0 || curr > m){
+              continue;
+          }
+           
+           int rem = curr%10 ,n1;
+           
+           if(rem != 9){
+               
+               n1 = curr*10+rem+1;
+               qu.offer(n1);
+           }
+           
+           if(rem != 0){
+               
+                n1= curr*10+rem-1;
+                qu.offer(n1);
+           }
+          
+       }
+       
+       return c; 
+    }
+}
