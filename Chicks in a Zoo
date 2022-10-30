@@ -6,14 +6,14 @@ class Solution
         
     long arr[] = new long[n+1];
     long sum = 1;
-    int idx = 0;
+    int idx = 1;
     
     
     arr[1] = 1;
     
     for(int i = 2 ; i <= n ; i++){
         
-        if(i >= 6){
+        if(i > 6){
             
             sum -= arr[idx++];
             
