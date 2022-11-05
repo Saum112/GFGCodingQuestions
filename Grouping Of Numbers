@@ -1,0 +1,37 @@
+class Solution {
+    static int maxGroupSize(int[] arr, int n, int k) {
+        // code here
+        
+        int [] a = new int[k];
+        
+        for(int i = 0 ; i < n  ; i++){
+            
+            a[arr[i]%k]++;
+        }
+        
+        int ans = 0;
+        
+        if(a[0] > 0){
+            
+            ans++;
+        }
+        
+        for(int i = 1 ; i <= k/2 ; i++){
+            
+            if(k % 2 == 0 && i == k/2){
+                
+                if(a[i] != 0){
+                    ans++;
+                }
+            }
+            
+            else{
+                
+                ans += Math.max(a[i] , a[k-i]);
+            }
+        }
+        
+    
+        return ans;
+    }
+};
