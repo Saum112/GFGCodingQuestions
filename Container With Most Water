@@ -1,0 +1,27 @@
+class Solve{
+    
+    long maxArea(int A[], int len){
+        // Code Here
+        
+       int left = 0 , right = A.length-1;
+       long max_area = 0, area = 0;
+       
+       while(left < right){
+           
+           area = Math.min(A[right] , A[left])*(right-left);
+           max_area = Math.max(max_area , area);
+           
+           if (A[left] < A[right]) {
+                left++;
+            } 
+            
+            else {
+                right--;
+            }
+
+       }
+       
+       return max_area;
+    }
+    
+}
