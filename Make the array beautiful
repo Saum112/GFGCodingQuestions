@@ -1,0 +1,35 @@
+class Solution {
+    public static ArrayList<Integer> makeBeautiful(int[] arr) {
+        // code here
+        
+        ArrayList<Integer> result = new ArrayList<>();
+       // Stack<Integer> s = new Stack<>();
+        int n = arr.length;
+        
+        for(int i = 0 ; i < n ; i++){
+            
+            if(result.size() == 0){
+                
+                result.add(arr[i]);                
+                //s.push(arr[i]);
+                
+            }
+            
+            else if((result.get(result.size() - 1) >= 0 && arr[i] < 0) || 
+            (result.get(result.size() - 1) < 0 && arr[i] >= 0)){
+                
+                 result.remove(result.size()-1);
+            }
+            
+            else{
+                
+                 result.add(arr[i]);    
+            }
+            
+        }
+        
+        
+        return  result;
+        
+    }
+}
